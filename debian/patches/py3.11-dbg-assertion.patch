@@ -1,0 +1,28 @@
+From: da-woods <dw-git@d-woods.co.uk>
+Date: Thu, 15 Sep 2022 22:10:18 +0100
+Subject: Avoid triggering type-check assert for cyfuncs
+
+Fixes #4804 (but not hugely satisfactorally)
+
+Origin: https://github.com/cython/cython/pull/5031
+Bug-Upstream: https://github.com/cython/cython/issues/4804
+---
+ Cython/Utility/ObjectHandling.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/Cython/Utility/ObjectHandling.c b/Cython/Utility/ObjectHandling.c
+index 864b658..961b5af 100644
+--- a/Cython/Utility/ObjectHandling.c
++++ b/Cython/Utility/ObjectHandling.c
+@@ -2322,7 +2322,10 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
+         return __Pyx_PyFunction_FastCall(func, NULL, 0);
+     }
+ #endif
+-#ifdef __Pyx_CyFunction_USED
++#if defined(__Pyx_CyFunction_USED) && defined(NDEBUG)
++    // TODO PyCFunction_GET_FLAGS has a type-check assert that breaks with a CyFunction
++    // in debug mode. There is likely to be a better way of avoiding tripping this
++    // check that doesn't involve disabling the optimized path.
+     if (likely(PyCFunction_Check(func) || __Pyx_CyFunction_Check(func)))
+ #else
+     if (likely(PyCFunction_Check(func)))
