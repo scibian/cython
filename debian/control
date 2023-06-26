@@ -1,7 +1,7 @@
 Source: cython
 Section: python
 Priority: optional
-Maintainer: Debian Python Team <team+python@tracker.debian.org>
+Maintainer: Scibian Project <packaging.org>
 Uploaders: Ondrej Certik <ondrej@certik.cz>, Yaroslav Halchenko <debian@onerussian.com>
 Build-Depends: debhelper (>= 7.0.50~),
                dh-python,
@@ -13,8 +13,8 @@ Build-Depends: debhelper (>= 7.0.50~),
 Build-Depends-Indep: python3-sphinx,
 Standards-Version: 4.6.1
 Homepage: http://cython.org/
-Vcs-Git: https://salsa.debian.org/python-team/packages/cython.git
-Vcs-Browser: https://salsa.debian.org/python-team/packages/cython
+Vcs-Git: https://github.com/scibian/gcython_0.29.32.git
+Vcs-Browser: https://github.com/scibian/cython_0.29.32
 
 Package: cython3
 Architecture: any
