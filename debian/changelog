@@ -1,3 +1,10 @@
+cython (0.29.32-2sci9u1) scibian9; urgency=medium
+
+  * Scibianization!
+  * add compat debian file
+
+ -- Kwame Amedodji <kwame-externe.amedodji@edf.fr>  Mon, 26 Jun 2023 23:20:48 +0200
+
 cython (0.29.32-2) unstable; urgency=medium
 
   * Team upload.
